@@ -1,7 +1,4 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
-
-// console.log(galleryItems);
 
 function createGalleryMarkup(items) {
 	return items
@@ -9,12 +6,11 @@ function createGalleryMarkup(items) {
 			item =>
 				`<li class="gallery__item">
 					<a class="gallery__link" href="${item.original}">
-						<img 
-						class="gallery__image"
-						src="${item.preview}"
-						alt="${item.description}"
-						title="${item.description}">
-					</a>
+					<img 
+					class="gallery__image"
+					src="${item.preview}"
+					alt="${item.description}">
+				</a>
 				</li>`,
 		)
 		.join('');
@@ -24,7 +20,7 @@ const galleryRef = document.querySelector('.gallery');
 
 galleryRef.innerHTML = createGalleryMarkup(galleryItems);
 
-let lightbox = new SimpleLightbox('.gallery a', {
-	// captionData: 'alt',
+const lightbox = new SimpleLightbox('.gallery a', {
+	captionsData: 'alt',
 	captionDelay: 250,
 });
