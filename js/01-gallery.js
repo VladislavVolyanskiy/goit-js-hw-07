@@ -29,7 +29,6 @@ galleryRef.addEventListener('click', onImageClick);
 
 let instance;
 
-//prettier-ignore
 function onImageClick(event) {
 	event.preventDefault();
 
@@ -40,9 +39,9 @@ function onImageClick(event) {
 	instance = basicLightbox.create(
 		`<img src=${event.target.dataset.source} width="1024" height="768">`,
 	);
-    instance.show();
-    galleryRef.addEventListener('keydown', onModalClose);
+	instance.show();
 
+	galleryRef.addEventListener('keydown', onModalClose);
 }
 
 function onModalClose(event) {
