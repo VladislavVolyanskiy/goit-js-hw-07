@@ -1,5 +1,4 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
 
 // console.log(galleryItems);
 
@@ -29,6 +28,9 @@ galleryRef.addEventListener('click', onImageClick);
 
 let instance;
 
+// documented options of basicLightbox used
+// https://github.com/electerious/basicLightbox/blob/master/README.md
+
 function onImageClick(event) {
 	event.preventDefault();
 
@@ -37,16 +39,22 @@ function onImageClick(event) {
 	}
 
 	instance = basicLightbox.create(
-		`<img src=${event.target.dataset.source} width="1024" height="768">`,
+		`<div class=""><img src=${event.target.dataset.source} width="1024" height="768"></div>`,
+		{
+			className: 'modal',
+			onShow: () => {
+				window.addEventListener('keydown', onEscDown);
+			},
+			onClose: () => {
+				window.removeEventListener('keydown', onEscDown);
+			},
+		},
 	);
 	instance.show();
-
-	galleryRef.addEventListener('keydown', onModalClose);
 }
 
-function onModalClose(event) {
+function onEscDown(event) {
 	if (event.code === 'Escape') {
 		instance.close();
-		galleryRef.removeEventListener('keydown', onModalClose);
 	}
 }
